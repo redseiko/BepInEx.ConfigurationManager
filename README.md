@@ -1,9 +1,26 @@
+# BepInEx.ConfigurationManager (ComfyDeps)
+
+*ComfyDeps-fork of the official BepInEx ConfigurationManager.*
+
+## Notes
+
+  * This is a fork of the official [BepInEx.ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager) plugin.
+  * All credit for the original plugin goes to the [BepInEx team](https://github.com/BepInEx).
+  * The only changes made in this fork are:
+    * Adding a custom `icon.png`, `manifest.json` and `CHANGELOG.md` which are files required for Thunderstore packages.
+    * Modifying `ConfigurationManager.csproj` to automatically create a Thunderstore package on build.
+    * Modifying this `README.md` with the contents of this prepended section.
+
+The original contents of the `README.md` are after the horizontal line below.
+
+---
+
 ## Plugin / mod configuration manager for BepInEx
 An easy way to let user configure how a plugin behaves without the need to make your own GUI. The user can change any of the settings you expose, even keyboard shortcuts.
 
 The configuration manager can be accessed in-game by pressing the hotkey (by default F1). Hover over the setting names to see their descriptions, if any.
 
-![Configuration manager](Screenshot.PNG)
+![Configuration manager](https://github.com/redseiko/BepInEx.ConfigurationManager/raw/master/Screenshot.PNG)
 
 ## How to use
 There are two versions of this plugin, for BepInEx 5 (version 5.4.20 or newer, mono only) and BepInEx 6 (nightly build 664 or newer, IL2CPP only).

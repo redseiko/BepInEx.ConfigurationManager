@@ -1,0 +1,8 @@
+{
+  "name": "BepInExConfigurationManager",
+  "version_number": "19.0.0",
+  "author": "ComfyDeps",
+  "description": "ComfyDeps-fork of the official BepInEx ConfigurationManager.",
+  "website_url": "https://github.com/redseiko/BepInEx.ConfigurationManager",
+  "dependencies": [ "denikson-BepInExPack_Valheim-5.4.2351" ]
+}

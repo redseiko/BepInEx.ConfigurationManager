@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
@@ -31,7 +31,7 @@
       <Link>LICENSE</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\README.md">
+    <None Include="..\README.md" ThunderstorePackage="true">
       <Link>README.md</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -39,6 +39,7 @@
       <Link>ConfigurationManagerAttributes.cs</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Thunderstore\*" ThunderstorePackage="true" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,5 +66,21 @@
   </ItemGroup>
 
   <Import Project="..\ConfigurationManager.Shared\ConfigurationManager.Shared.projitems" Label="Shared" />
+
+  <Target Name="CreateReleaseZip" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <PropertyGroup>
+      <CopyDir>$(OutputPath)\..\TEMP_COPY_$(AssemblyName)</CopyDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <BuildFiles Include="$(OutputPath)\*" />
+      <ThunderstoreFiles Include="@(None)" Condition="'%(None.ThunderstorePackage)' == 'true'" />
+    </ItemGroup>
+
+    <RemoveDir Directories="$(CopyDir)" />
+    <Copy DestinationFolder="$(CopyDir)\BepInEx\plugins\ConfigurationManager" SourceFiles="@(BuildFiles)" />
+    <Copy DestinationFolder="$(CopyDir)" SourceFiles="@(ThunderstoreFiles)" />
+    <ZipDirectory SourceDirectory="$(CopyDir)" DestinationFile="$(OutputPath)\..\BepInEx.ConfigurationManager$(ZipPostfix)_v$(Version).zip" Overwrite="true" />
+    <RemoveDir Directories="$(CopyDir)" />
+  </Target>
 
 </Project>
